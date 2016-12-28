@@ -50,6 +50,7 @@ class Spark{
         levelsToDraw = levels;
         numberDendriteProximal = 0;
         RUN = true;
+        numberSparks += 1;
       }   
   }
   
