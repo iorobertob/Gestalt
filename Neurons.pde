@@ -28,6 +28,7 @@ int numberDendriteDistal     = 0;
 int currentLevel             = 0;   // TODO: see if can be replace with "level"
 int sparkSpeed               = 10;
 int numberSparks             = 0;
+int sparksToFire             = 10;
 
 
 int  [] repeatedThetaCounter = new int   [levels];                         // Aux value to repeat thetas in next matrix
@@ -67,6 +68,10 @@ Spark  spark  = new Spark();
 void setup() {
   size(1200, 960);
   frameRate (200);
+  
+  SPARK      = true;                                   // Start a new spark drawing
+  STARTSPARK = true;                                   // Enable the first part of the drawint only. TODO: maybe unnecesary 
+  
 }
 
 
@@ -89,6 +94,13 @@ void draw() {
   if (SPARK == true)                        // At the time this means If mouse has been clicked 
   {
     spark.proximalSpark(thetas0);
+  }
+  
+  if(numberSparks >= sparksToFire)
+  { 
+    SPARK        = false;
+    AXONSPARK    = true;      // Goes in the queue.
+    numberSparks = 0;
   }
 
   if(AXONSPARK == true)
@@ -117,20 +129,7 @@ Callback
 */
 void mouseClicked()
 {
-  if(numberSparks >= 0)
-  { 
-    SPARK        = false;
-    AXONSPARK    = true;      // Goes in the queue.
-    numberSparks = 0;
-  }
-  else
-  {
-    
-    SPARK      = true;                                   // Start a new spark drawing
-    STARTSPARK = true;                                   // Enable the first part of the drawint only. TODO: maybe unnecesary 
-  
-    numberSparks += 1;
-  }
+
 }
 
 /*
