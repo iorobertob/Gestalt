@@ -12,8 +12,8 @@ class Neuron {
   {
     clearArray(repeatedThetaCounter);
     
-    fill(0,0,0,10);
-    rect(0,0,width,height);
+    //fill(0,0,0,10);
+    //rect(0,0,width,height);
     
     a     = random(10, 60);                              // Random angle for next branching.
     theta = radians(a);                                  // Convert it to radiana.
