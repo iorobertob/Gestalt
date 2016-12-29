@@ -65,6 +65,8 @@ color white = #FFFFFF;
 Neuron neuron = new Neuron();
 Spark  spark  = new Spark();
 
+PImage img;
+
 void setup() {
   size(1200, 960);
   frameRate (200);
@@ -72,11 +74,12 @@ void setup() {
   SPARK      = true;                                   // Start a new spark drawing
   STARTSPARK = true;                                   // Enable the first part of the drawint only. TODO: maybe unnecesary 
   
+  img = loadImage("map.png");
 }
 
 
 void draw() {
-  println(frameRate);
+  println("Frame Rate: " + frameRate);
   if (DRAWN == false)                                   // Draw Neurons for the first time, only once. 
   { 
     background(0);
@@ -87,8 +90,11 @@ void draw() {
   
   if (RUN == true)
   {
+    tint(255, 10);
+    image(img,-1200,-600);
     neuron.drawNeuron(true,initialThicknessProximal, initialThicknessDistal);
-    RUN =  false; // Only draw when a spark has finished, otherwise the position matrix is messed up. TODO: fix
+    RUN =  false;     // Only draw when a spark has finished, otherwise the position matrix is messed up.
+                      //TODO: fix
   }
   
   if (SPARK == true)                        // At the time this means If mouse has been clicked 
@@ -99,7 +105,7 @@ void draw() {
   if(numberSparks >= sparksToFire)
   { 
     SPARK        = false;
-    AXONSPARK    = true;      // Goes in the queue.
+    AXONSPARK    = true;                    // Goes in the queue.
     numberSparks = 0;
   }
 
